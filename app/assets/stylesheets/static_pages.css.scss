@@ -1,0 +1,124 @@
+// Place all the styles related to the static_pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+     width: 100%;
+     height: 100%;  
+     font-family: verdana;
+     font-size: 1em;
+     -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+	background: #444444;
+	  
+}
+
+#content {
+	  width: 85%;
+	  height: 100%;
+	  background: #dd9955;
+	  font-size: 1em;
+	  display: inline-block;
+	  float: left;
+	  box-shadow: 1px 0px 50px black;
+}
+#sidebar {
+	  width: 15%;
+	  height: 100%;
+	  font-size: 1em;
+	  display: inline-block;
+	  float: right;
+}
+
+
+
+.element {
+	  position: absolute;
+	  width: 4.5%;
+	  height: 17%;
+	  background: #ccccff;
+	  border: 3px solid #444444;	  
+	  box-shadow: 0px 0px 8px black;
+	  cursor: pointer;
+	  font-size: 1em;
+	  text-align: center;
+	  display: inline-block;
+
+}
+
+
+.symbol {
+	 font-weight: bold;
+	 margin: 0 auto;
+	 width: 100%;
+	 height: 25%;
+}
+
+.name {
+      font-size: 0.5em;
+      width: 100%;
+	 height: 25%;	 
+	 margin: auto;
+}
+
+.Z {
+   width: 100%;
+	 height: 25%;	   
+}
+
+.distribution {
+   width: 100%;
+	 height: 25%;	   
+	 display: none;
+	 font-size: 0.8em;
+}
+
+
+
+
+.metalColour {
+
+	      background: #aa33ff;
+}
+
+.nonMetalColour {
+
+	      background: #aaff22;
+}
+
+
+.nobleGasColour {
+		  background: #dddd22;
+}
+
+.alcalineColour {
+		  background: #dd22dd;
+}
+
+.terrosoColour {
+		  background: #22dddd;
+}
+
+.halogenColour {
+		  background: #3d8722;
+}
+
+
+#selection_area {
+		  border: 1px dotted black;
+		  position: absolute;
+		  }
+
+.selected_element {
+		    border: 3px solid #bb0000; 
+		    box-shadow: 0px 0px 8px #880000;
+}

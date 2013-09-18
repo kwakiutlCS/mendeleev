@@ -1,0 +1,11 @@
+$(document).ready(function() {
+
+<%= @elements.each do |element| %>
+$("#content").append("<div class='element'><div class='symbol'><%= @element.symbol %></div><div class='name'><%= @element.name %></div><div class='Z'><%= @element.Z %></div><div class='distribution'><%= @element.distribution %></div></div>");
+
+var e = $("#content").children().last();
+e.draggable({containment: "#content"});
+e.css({top: 5, left: 500});
+
+<% end %>
+});

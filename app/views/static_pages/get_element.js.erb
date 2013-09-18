@@ -1,0 +1,16 @@
+$("#content").html("");
+
+<% @elements.each_with_index do |e,i| %>
+   $("#content").append("<div class='element <%= e.kind %> <%= e.family %>' id='<%= e.symbol %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div></div>");
+
+
+   var el = $("#content").children().last();
+   el.draggable({containment: "#content", stack:".element"});
+   el.css({top: "<%= ((i/10)+1)*21 %>%", left:"<%= ((i%10)+2)*6 %>%"});
+   
+<% end %>
+
+
+$("#content").on("dblclick", ".element", function() {
+				 alert($(this).parent().html());
+});

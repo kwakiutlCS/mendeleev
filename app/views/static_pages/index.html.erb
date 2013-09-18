@@ -1,0 +1,15 @@
+<div id="content">
+  
+</div>
+
+<div id="sidebar">
+  <%= select_tag(:element, options_for_select(["H-Ca","Mendeleev"])) %>
+  <%= button_tag(:adicionar, id:"add_element_button") %>
+
+
+  <%= select_tag(:colour, options_for_select(["Normal","Metais/Não metais","Famílias","Metais alcalinos","Metais alcalino-terrosos","Halogéneos","Gases nobres"])) %>
+  
+
+  <label>Distribuição eletrónica</label>
+  <%= check_box_tag(:distribution) %>
+</div>

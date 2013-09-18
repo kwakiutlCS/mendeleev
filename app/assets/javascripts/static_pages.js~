@@ -1,0 +1,15 @@
+
+$(document).ready(function() {
+    $(".element").draggable({containment: "#content"});
+
+    $("#sidebar").on("click", "#add_element_button", function() {
+	 var symbol = $("#element").val();
+	 
+	 $.ajax("get_symbol",
+		 {method: "get",
+		  data: {symbol: symbol}
+		 });
+	 
+    });
+  
+});

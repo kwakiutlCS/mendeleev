@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  Z: 1
+  A: 1
+  type: 
+  mendeleev: false
+  distribution: MyString
+
+two:
+  name: MyString
+  Z: 1
+  A: 1
+  type: 
+  mendeleev: false
+  distribution: MyString
