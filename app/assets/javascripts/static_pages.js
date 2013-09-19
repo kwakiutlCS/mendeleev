@@ -3,9 +3,67 @@ $(document).ready(function() {
     
     // ACRESCENTAR ELEMENTOS
     $("#sidebar").on("click", "#add_element_button", function() {
-	 $(".element").show();
+	 var group = $("#element_group").val();
 	 
+	 if (group == "H-Ca") {
+	     $(".element").each(function() {
+		  if ($(this).data("z") <= 20)
+		      $(this).show();
+	     });
+	 }
+	 else if (group == "Sc-Zn") {
+	     $(".element").each(function() {
+		  if ($(this).data("z") > 20 && $(this).data("z") <= 30)
+		      $(this).show();
+	     });
+	 }
+	 else if (group == "Ga-Kr") {
+	     $(".element").each(function() {
+		  if ($(this).data("z") > 30 && $(this).data("z") <= 38)
+		      $(this).show();
+	     });
+	 }
+	 else if (group == "Rb-Sr") {
+	     $(".element").each(function() {
+		  if ($(this).data("z") > 38 && $(this).data("z") <= 40)
+		      $(this).show();
+	     });
+	 }
+
+	 //$(".element").addClass("mini_element");
     });
+
+    
+    // REMOVER ELEMENTOS
+    $("#sidebar").on("click", "#remove_element_button", function() {
+	 var group = $("#element_group").val();
+	 
+	 if (group == "H-Ca") {
+	     $(".element").each(function() {
+		  if ($(this).data("z") <= 20)
+		      $(this).hide();
+	     });
+	 }
+	 else if (group == "Sc-Zn") {
+	     $(".element").each(function() {
+		  if ($(this).data("z") > 20 && $(this).data("z") <= 30)
+		      $(this).hide();
+	     });
+	 }
+	 else if (group == "Ga-Kr") {
+	     $(".element").each(function() {
+		  if ($(this).data("z") > 30 && $(this).data("z") <= 38)
+		      $(this).hide();
+	     });
+	 }
+	 else if (group == "Rb-Sr") {
+	     $(".element").each(function() {
+		  if ($(this).data("z") > 38 && $(this).data("z") <= 40)
+		      $(this).hide();
+	     });
+	 }
+    });
+
 
 
     // ALTERAR CORES
@@ -42,11 +100,16 @@ $(document).ready(function() {
 
 
     // ALERAR DISTRIBUIÇAO ELECTRONICA
-    $("#distribution").change(function() {
-	 if ($("input:checked").length)
+    $("#distribution_selection").change(function() {
+	 $(".distribution").hide();
+	 $(".detailed_distribution").hide();
+	 
+	 if ($(this).val() == "Níveis") {
 	     $(".distribution").show();
-	 else
-	     $(".distribution").hide();
+	 }
+	 else if ($(this).val() == "Blocos(concisa)") {
+	     $(".detailed_distribution").show();
+	 }
     });
 
 

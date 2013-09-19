@@ -1,7 +1,7 @@
 <div id="content">
 
 <% @elements.each_with_index do |e,i| %>
-   <div class='element <%= e.kind %> <%= e.family %>' id='<%= e.symbol %>' style='top: <%= ((i/10)+1)*21 %>%; left:<%= ((i%10)+2)*6 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= e.detailed_distribution %></div></div>
+   <div class='element <%= e.kind %> <%= e.family %>' id='<%= e.symbol %>' style='top: <%= ((i/10)+1)*21 %>%; left:<%= ((i%10)+2)*6 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
 
 
    	   
@@ -10,15 +10,17 @@
 </div>
 
 <div id="sidebar">
-  <%= select_tag(:element, options_for_select(["H-Ca","Mendeleev"])) %>
+  <%= select_tag(:element, options_for_select(["H-Ca","Sc-Zn","Ga-Kr","K-Sr"]), id:"element_group") %>
   <%= button_tag(:adicionar, id:"add_element_button") %>
+  <%= button_tag(:remover, id:"remove_element_button") %>
 
 
-  <%= select_tag(:colour, options_for_select(["Normal","Metais/Não metais","Famílias","Metais alcalinos","Metais alcalino-terrosos","Halogéneos","Gases nobres"])) %>
+  <%= select_tag(:colour, options_for_select(["Normal","Metais/Não metais","Metais alcalinos","Metais alcalino-terrosos","Gases nobres","Halogéneos","Famílias"])) %>
   
-
   <label>Distribuição eletrónica</label>
-  <%= check_box_tag(:distribution) %>
+  <%= select_tag(:distribution, options_for_select(["Nenhuma","Níveis","Blocos(concisa)"]), id:"distribution_selection") %>
+  
+  
 </div>
 
 

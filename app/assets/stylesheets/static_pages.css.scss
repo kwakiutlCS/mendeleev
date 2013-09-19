@@ -38,6 +38,7 @@ user-select: none;
 	  font-size: 1em;
 	  display: inline-block;
 	  float: right;
+	  
 }
 
 
@@ -56,6 +57,11 @@ user-select: none;
 
 }
 
+.mini_element {
+		width: 3.8%;
+		height: 14.33%;
+
+}
 
 .symbol {
 	 font-weight: bold;
@@ -86,8 +92,8 @@ user-select: none;
 .detailed_distribution {
    width: 100%;
 	 height: 25%;	   
-	 
-	 font-size: 0.6em;
+	 display: none;
+	 font-size: 0.5em;
 }
 
 
