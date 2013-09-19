@@ -99,7 +99,7 @@ $(document).ready(function() {
 
     $("body").on("mouseup", function(evt) {
 	 
-	 if (Math.abs(evt.pageX-imgShow.x) < 3 && Math.abs(evt.pageY-imgShow.y) < 3) {
+	 if (Math.abs(evt.pageX-imgShow.x) < 1 && Math.abs(evt.pageY-imgShow.y) < 1) {
 	     $("#content").append("<a class='fancybox' id='fancylink' href='assets/"+imgShow.symbol+".jpg' title='"+imgShow.title+"'></a>");
       
 	 $("#fancylink").fancybox();
@@ -155,9 +155,22 @@ $(document).ready(function() {
 	 }
 	 
 	 if (dragged.selection_protected) {
-	     var deltaX = "+="+String(evt.pageX-dragged.startX);
-	     var deltaY = "+="+String(evt.pageY-dragged.startY);
-	     $(".selected_element").css({"left": deltaX, "top": deltaY});
+	     var that, content = $("#content");
+	     var blockWidth = parseInt($(".element").first().css("width").split("p")[0]);
+	     var blockHeight = parseInt($(".element").first().css("height").split("p")[0]);
+	     var deltaX = String(evt.pageX-dragged.startX);
+	     var deltaY = String(evt.pageY-dragged.startY);
+	     $(".selected_element").css({"left": "+="+deltaX, "top": "+="+deltaY});
+	     $(".selected_element").each(function() {
+		  that = $(this);
+		  
+		  if (parseInt(that.css("left").split("p")[0]) < 0 || parseInt(that.css("left").split("p")[0])+blockWidth > parseInt(content.css("width").split("p")[0]) || parseInt(that.css("top").split("p")[0]) < 0 || parseInt(that.css("top").split("p")[0])+blockHeight > parseInt(content.css("height").split("p")[0])) {
+		      $(".selected_element").css({"left": "-="+deltaX, "top": "-="+deltaY});
+		      
+		      return;
+		  }
+		      
+	     });
 	     dragged.startX = evt.pageX;
 	     dragged.startY = evt.pageY;
 	 }

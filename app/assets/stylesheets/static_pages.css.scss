@@ -5,6 +5,7 @@
 * {
   margin: 0;
   padding: 0;
+ 
 }
 
 html, body {
@@ -19,7 +20,7 @@ html, body {
 -ms-user-select: none;
 user-select: none;
 	background: #444444;
-	  
+	 overflow: hidden;	  
 }
 
 #content {
