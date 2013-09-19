@@ -5,12 +5,28 @@ $("#content").html("");
 
 
    var el = $("#content").children().last();
-   el.draggable({containment: "#content", stack:".element"});
+   el.draggable({containment: "#content", stack:".element",
+   helper: function(){
+   	    return $(this);
+
+	    }
+   });
+
+
+
+
    el.css({top: "<%= ((i/10)+1)*21 %>%", left:"<%= ((i%10)+2)*6 %>%"});
-   
+
+   el.on("dblclick", function() {
+      if (<%= e.photo %>) {
+      	  $("#content").append("<a class='fancybox' id='fancylink' href='assets/<%= e.symbol %>.jpg' title='<%= e.name %>'>erg</a>");
+      
+	 $("#fancylink").fancybox();
+      	  $("#fancylink").click();
+      	  $("#fancylink").remove();
+	  }	  
+   });			   
 <% end %>
 
 
-$("#content").on("dblclick", ".element", function() {
-				 alert($(this).parent().html());
-});
+

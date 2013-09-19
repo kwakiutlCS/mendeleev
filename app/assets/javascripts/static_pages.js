@@ -56,9 +56,20 @@ $(document).ready(function() {
 
     
     var selectionArea= {dragging: false};
+    var selection_protected = false;
+    
+    $("#content").on("mousedown", ".selected_element", function(){
+	 selection_protected = true;
+    });
 
     $("#content").on("mousedown", function(evt) {
-	 $(".selected_element").removeClass("selected_element");
+	 if (!selection_protected) {
+	     $(".selected_element").removeClass("selected_element");
+	     
+	 }
+	 else
+	     selection_protected = false;
+
 	 selectionArea = {dragging: false, startX: false, startY: false, left: false, top: false, width: false, height: false};
 	 selectionArea.startX = evt.pageX;
 	 selectionArea.startY = evt.pageY;
@@ -113,5 +124,11 @@ $(document).ready(function() {
 	     area.css({left: selectionArea.left+"px", top: selectionArea.top+"px", width: selectionArea.width+"px", height: selectionArea.height+"px"});
 	 }
     });
+
+
+    
+    
+    
+    
   
 });
