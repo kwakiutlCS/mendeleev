@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
 
 def index
-  @elements = Element.all
+  @elements = Element.order("Z")
   
 end
 

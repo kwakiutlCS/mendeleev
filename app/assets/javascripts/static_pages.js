@@ -3,12 +3,7 @@ $(document).ready(function() {
     
     
     $("#sidebar").on("click", "#add_element_button", function() {
-	 var symbol = $("#element").val();
-	 
-	 $.ajax("get_symbol",
-		 {method: "get",
-		  data: {symbol: symbol}
-		 });
+	 $(".element").show();
 	 
     });
 
@@ -57,9 +52,14 @@ $(document).ready(function() {
     
     var selectionArea= {dragging: false};
     var selection_protected = false;
-    
+    var imgShow = {x: false, y: false};
     $("#content").on("mousedown", ".selected_element", function(){
 	 selection_protected = true;
+    });
+
+    $("#content").on("mousedown", ".element", function(evt){
+	 imgShow = {x: evt.pageX, y: evt.pageY};
+	 console.log(imgShow);
     });
 
     $("#content").on("mousedown", function(evt) {
@@ -80,6 +80,15 @@ $(document).ready(function() {
 	 
     });
     $("body").on("mouseup", function(evt) {
+	 
+	 if (evt.pageX == imgShow.x && evt.pageY == imgShow.y) {
+	     $("#content").append("<a class='fancybox' id='fancylink' href='assets/Na.jpg' title=''></a>");
+      
+	 $("#fancylink").fancybox();
+      	  $("#fancylink").click();
+      	  $("#fancylink").remove();
+	 }
+	 
 	 
 	 if (selectionArea.dragging) {
 	     $(".element").each(function() {
@@ -127,7 +136,18 @@ $(document).ready(function() {
 
 
     
-    
+    $(".element").draggable({containment: "#content", stack:".element"
+   });
+
+
+    $("#content").on("click",".element", function() {
+	 $("#content").append("<a class='fancybox' id='fancylink' href='assets/Na.jpg' title=''></a>");
+      
+	 $("#fancylink").fancybox();
+      	  $("#fancylink").click();
+      	  $("#fancylink").remove();
+	  	  
+   });	
     
     
   

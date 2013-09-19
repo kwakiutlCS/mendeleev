@@ -1,0 +1,32 @@
+$("#content").html("");
+
+<% @elements.each_with_index do |e,i| %>
+   $("#content").append("<div class='element <%= e.kind %> <%= e.family %>' id='<%= e.symbol %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div></div>");
+
+
+   var el = $("#content").children().last();
+   el.draggable({containment: "#content", stack:".element",
+   helper: function(){
+   	    return $(this);
+
+	    }
+   });
+
+
+
+
+  
+
+   el.on("dblclick", function() {
+      if (<%= e.photo %>) {
+      	  $("#content").append("<a class='fancybox' id='fancylink' href='assets/<%= e.symbol %>.jpg' title='<%= e.name %>'>erg</a>");
+      
+	 $("#fancylink").fancybox();
+      	  $("#fancylink").click();
+      	  $("#fancylink").remove();
+	  }	  
+   });			   
+<% end %>
+
+
+
