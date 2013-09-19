@@ -1,13 +1,14 @@
 
 $(document).ready(function() {
     
-    
+    // ACRESCENTAR ELEMENTOS
     $("#sidebar").on("click", "#add_element_button", function() {
 	 $(".element").show();
 	 
     });
 
 
+    // ALTERAR CORES
     $("#colour").change(function() {
 	 var selection = $(this).val();
 	 
@@ -40,6 +41,7 @@ $(document).ready(function() {
     });
 
 
+    // ALERAR DISTRIBUIÇAO ELECTRONICA
     $("#distribution").change(function() {
 	 if ($("input:checked").length)
 	     $(".distribution").show();
@@ -49,26 +51,32 @@ $(document).ready(function() {
 
 
 
-    
+    // SELECÇÂO
     var selectionArea= {dragging: false};
-    var selection_protected = false;
-    var imgShow = {x: false, y: false};
-    $("#content").on("mousedown", ".selected_element", function(){
-	 selection_protected = true;
+    var dragged = {selection_protected: false};
+    
+    $("#content").on("mousedown", ".selected_element", function(evt){
+	 dragged.selection_protected = true;
+	 dragged.startX = evt.pageX;
+	 dragged.startY = evt.pageY;
     });
 
-    $("#content").on("mousedown", ".element", function(evt){
-	 imgShow = {x: evt.pageX, y: evt.pageY};
-	 console.log(imgShow);
+    $("#content").on("mousedown", ".element", function(evt) {
+	 if (!dragged.selection_protected) {
+	     $(".selected_element").removeClass("selected_element");
+	 }
+	 
+	 dragged.selection_protected = true;
+	 dragged.startX = evt.pageX;
+	 dragged.startY = evt.pageY;
+	 $(this).addClass("selected_element");
     });
 
     $("#content").on("mousedown", function(evt) {
-	 if (!selection_protected) {
+	 if (!dragged.selection_protected) {
 	     $(".selected_element").removeClass("selected_element");
-	     
 	 }
-	 else
-	     selection_protected = false;
+	 
 
 	 selectionArea = {dragging: false, startX: false, startY: false, left: false, top: false, width: false, height: false};
 	 selectionArea.startX = evt.pageX;
@@ -79,10 +87,20 @@ $(document).ready(function() {
 	 $("#selection_area").css({left:evt.pageX+"px", top:evt.pageY+"px"});
 	 
     });
+
+    
+    // IMAGEM DOS ELEMENTOS
+    var imgShow = {x: false, y: false, title: false, symbol: false};
+    
+    $("#content").on("mousedown", ".element", function(evt){
+	 imgShow = {x: evt.pageX, y: evt.pageY, title: $(this).data("title"), symbol: $(this).data("symbol")};
+	 
+    });
+
     $("body").on("mouseup", function(evt) {
 	 
-	 if (evt.pageX == imgShow.x && evt.pageY == imgShow.y) {
-	     $("#content").append("<a class='fancybox' id='fancylink' href='assets/Na.jpg' title=''></a>");
+	 if (Math.abs(evt.pageX-imgShow.x) < 3 && Math.abs(evt.pageY-imgShow.y) < 3) {
+	     $("#content").append("<a class='fancybox' id='fancylink' href='assets/"+imgShow.symbol+".jpg' title='"+imgShow.title+"'></a>");
       
 	 $("#fancylink").fancybox();
       	  $("#fancylink").click();
@@ -102,11 +120,14 @@ $(document).ready(function() {
 	 }
 	 selectionArea.dragging = false;
 	 $("#selection_area").remove();
+
+	 dragged.selection_protected = false;
     });
+
     $("#content").on("mousemove", function(evt) {
 	 if (selectionArea.dragging) {
 	     var area = $("#selection_area");
-	     if ($(".ui-draggable-dragging").length) {
+	     if ($(".selected_element").length) {
 		  area.remove();
 		  selectionArea.dragging = false;
 		  return;
@@ -132,22 +153,21 @@ $(document).ready(function() {
 
 	     area.css({left: selectionArea.left+"px", top: selectionArea.top+"px", width: selectionArea.width+"px", height: selectionArea.height+"px"});
 	 }
+	 
+	 if (dragged.selection_protected) {
+	     var deltaX = "+="+String(evt.pageX-dragged.startX);
+	     var deltaY = "+="+String(evt.pageY-dragged.startY);
+	     $(".selected_element").css({"left": deltaX, "top": deltaY});
+	     dragged.startX = evt.pageX;
+	     dragged.startY = evt.pageY;
+	 }
     });
 
 
     
-    $(".element").draggable({containment: "#content", stack:".element"
-   });
+    
 
-
-    $("#content").on("click",".element", function() {
-	 $("#content").append("<a class='fancybox' id='fancylink' href='assets/Na.jpg' title=''></a>");
-      
-	 $("#fancylink").fancybox();
-      	  $("#fancylink").click();
-      	  $("#fancylink").remove();
-	  	  
-   });	
+   
     
     
   
