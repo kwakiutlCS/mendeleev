@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130918220729) do
+ActiveRecord::Schema.define(:version => 20130919162604) do
 
   create_table "elements", :force => true do |t|
     t.string   "name"
@@ -20,11 +20,12 @@ ActiveRecord::Schema.define(:version => 20130918220729) do
     t.string   "kind"
     t.boolean  "mendeleev"
     t.string   "distribution"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.string   "symbol"
     t.string   "family"
-    t.boolean  "photo",        :default => true
+    t.boolean  "photo",                 :default => true
+    t.string   "detailed_distribution", :default => ""
   end
 
 end
