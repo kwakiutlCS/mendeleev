@@ -1,7 +1,7 @@
 <div id="content">
 
 <% @elements.each_with_index do |e,i| %>
-   <div class='element <%= e.kind %> <%= e.family %>' id='<%= e.symbol %>' style='top: <%= ((i/10)+1)*21 %>%; left:<%= ((i%10)+2)*6 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
+   <div class='hidden element <%= e.kind %> <%= e.family %>' id='<%= e.symbol %>' style='top: <%= ((i/10)+1)*21 %>%; left:<%= ((i%10)+2)*6 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
 
 
    	   

@@ -8,29 +8,31 @@ $(document).ready(function() {
 	 if (group == "H-Ca") {
 	     $(".element").each(function() {
 		  if ($(this).data("z") <= 20)
-		      $(this).show();
+		      $(this).removeClass("hidden");
 	     });
 	 }
 	 else if (group == "Sc-Zn") {
 	     $(".element").each(function() {
 		  if ($(this).data("z") > 20 && $(this).data("z") <= 30)
-		      $(this).show();
+		      $(this).removeClass("hidden");
 	     });
 	 }
 	 else if (group == "Ga-Kr") {
 	     $(".element").each(function() {
 		  if ($(this).data("z") > 30 && $(this).data("z") <= 38)
-		      $(this).show();
+		      $(this).removeClass("hidden");
 	     });
 	 }
 	 else if (group == "Rb-Sr") {
 	     $(".element").each(function() {
 		  if ($(this).data("z") > 38 && $(this).data("z") <= 40)
-		      $(this).show();
+		      $(this).removeClass("hidden");
 	     });
 	 }
 
-	 //$(".element").addClass("mini_element");
+	 
+	 if ($(".element").length - $(".hidden").length > 20)
+	     $(".element").addClass("mini_element");
     });
 
     
@@ -41,27 +43,31 @@ $(document).ready(function() {
 	 if (group == "H-Ca") {
 	     $(".element").each(function() {
 		  if ($(this).data("z") <= 20)
-		      $(this).hide();
+		      $(this).addClass("hidden");
 	     });
 	 }
 	 else if (group == "Sc-Zn") {
 	     $(".element").each(function() {
 		  if ($(this).data("z") > 20 && $(this).data("z") <= 30)
-		      $(this).hide();
+		      $(this).addClass("hidden");
 	     });
 	 }
 	 else if (group == "Ga-Kr") {
 	     $(".element").each(function() {
 		  if ($(this).data("z") > 30 && $(this).data("z") <= 38)
-		      $(this).hide();
+		      $(this).addClass("hidden");
 	     });
 	 }
 	 else if (group == "Rb-Sr") {
 	     $(".element").each(function() {
 		  if ($(this).data("z") > 38 && $(this).data("z") <= 40)
-		      $(this).hide();
+		      $(this).addClass("hidden");
 	     });
 	 }
+
+	 
+	 if ($(".element").length - $(".hidden").length <= 20)
+	     $(".element").removeClass("mini_element");
     });
 
 
@@ -184,6 +190,7 @@ $(document).ready(function() {
 	 selectionArea.dragging = false;
 	 $("#selection_area").remove();
 
+	 
 	 dragged.selection_protected = false;
     });
 
