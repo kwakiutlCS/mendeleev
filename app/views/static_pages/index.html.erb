@@ -10,15 +10,16 @@
 </div>
 
 <div id="sidebar">
-  <%= select_tag(:element, options_for_select(["H-Ca","Sc-Zn","Ga-Kr","K-Sr"]), id:"element_group") %>
-  <%= button_tag(:adicionar, id:"add_element_button") %>
-  <%= button_tag(:remover, id:"remove_element_button") %>
+  <%= select_tag(:element, options_for_select(["H-Ca","Sc-Zn","Ga-Kr","K-Sr"]), id:"element_group", style:"width:80px") %>
+  <br />
+  <%= button_tag(:adicionar, id:"add_element_button", class:"btn btn-primary btn-small") %>
+  <%= button_tag(:remover, id:"remove_element_button", class:"btn btn-primary btn-small") %>
 
 
-  <%= select_tag(:colour, options_for_select(["Normal","Metais/Não metais","Metais alcalinos","Metais alcalino-terrosos","Gases nobres","Halogéneos","Famílias"])) %>
+  <%= select_tag(:colour, options_for_select(["Normal","Metais/Não metais","Metais alcalinos","Metais alcalino-terrosos","Gases nobres","Halogéneos","Famílias"]), style:"width:190px") %>
   
   <label>Distribuição eletrónica</label>
-  <%= select_tag(:distribution, options_for_select(["Nenhuma","Níveis","Blocos(concisa)"]), id:"distribution_selection") %>
+  <%= select_tag(:distribution, options_for_select(["Nenhuma","Níveis","Blocos(concisa)"]), id:"distribution_selection", style:"width:140px") %>
   
   
 </div>

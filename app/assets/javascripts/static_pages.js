@@ -1,5 +1,7 @@
 
 $(document).ready(function() {
+    var screenWidth = parseInt(($("#content").css("width")).slice(0,-2));
+    var screenHeight = parseInt(($("#content").css("height")).slice(0,-2));
     
     // ACRESCENTAR ELEMENTOS
     $("#sidebar").on("click", "#add_element_button", function() {
@@ -105,7 +107,7 @@ $(document).ready(function() {
     });
 
 
-    // ALERAR DISTRIBUIÇAO ELECTRONICA
+    // ALTERAR DISTRIBUIÇAO ELECTRONICA
     $("#distribution_selection").change(function() {
 	 $(".distribution").hide();
 	 $(".detailed_distribution").hide();
@@ -131,20 +133,24 @@ $(document).ready(function() {
     });
 
     $("#content").on("mousedown", ".element", function(evt) {
-	 if (!dragged.selection_protected) {
-	     $(".selected_element").removeClass("selected_element");
+	$(".element").css("z-index", "0");
+	    
+	if (!dragged.selection_protected) {
+	    $(".selected_element").removeClass("selected_element");
+	     
 	 }
 	 
 	 dragged.selection_protected = true;
 	 dragged.startX = evt.pageX;
 	 dragged.startY = evt.pageY;
 	 $(this).addClass("selected_element");
+	 $(".selected_element").css("z-index", "10");
     });
 
     $("#content").on("mousedown", function(evt) {
-	 if (!dragged.selection_protected) {
+	if (!dragged.selection_protected) {
 	     $(".selected_element").removeClass("selected_element");
-	 }
+	}
 	 
 
 	 selectionArea = {dragging: false, startX: false, startY: false, left: false, top: false, width: false, height: false};
@@ -155,6 +161,52 @@ $(document).ready(function() {
 	 $("#content").append("<div id='selection_area'></div>");
 	 $("#selection_area").css({left:evt.pageX+"px", top:evt.pageY+"px"});
 	 
+    });
+
+    // attatch elements
+    $("#content").on("mouseup", ".element", function() {
+	var h = parseInt(($(this).css("height")).slice(0,-2));
+	var t = parseInt(($(this).css("top")).slice(0,-2));
+	var w = parseInt(($(this).css("width")).slice(0,-2));
+	var l = parseInt(($(this).css("left")).slice(0,-2));
+	var r = l+w;
+	var b = t+h;
+
+	var verticalCenter = t+h/2;
+	var horizontalCenter = l+w/2;
+	var that = $(this);
+
+	$(".element").each(function() {
+	    if(that != $(this)) {
+		var height = parseInt(($(this).css("height")).slice(0,-2));
+		var top = parseInt(($(this).css("top")).slice(0,-2));
+		var width = parseInt(($(this).css("width")).slice(0,-2));
+		var left = parseInt(($(this).css("left")).slice(0,-2));
+		var right = left+width;
+		var bottom = top+height;
+
+		if (l < right && l > left && verticalCenter < bottom && verticalCenter > top) {
+		    that.css("left", right+screenWidth/150);
+		    that.css("top", top+screenHeight/1000);
+		    return false;
+		}
+		else if (r > left && r < right && verticalCenter < bottom && verticalCenter > top) {
+		    that.css("left", left-width-screenWidth/150);
+		    that.css("top", top+screenHeight/1000);
+		    return false;
+		}
+		else if (t > top && t < bottom && horizontalCenter < right && horizontalCenter > left) {
+		    that.css("left", left);
+		    that.css("top", top+height+screenHeight/100);
+		    return false;
+		}
+		else if (b > top && b < bottom && horizontalCenter < right && horizontalCenter > left) {
+		    that.css("left", left);
+		    that.css("top", top-height-screenHeight/100);
+		    return false;
+		}
+	    }
+	});
     });
 
     
