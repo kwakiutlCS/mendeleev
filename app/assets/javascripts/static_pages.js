@@ -186,23 +186,31 @@ $(document).ready(function() {
 		var bottom = top+height;
 
 		if (l < right && l > left && verticalCenter < bottom && verticalCenter > top) {
-		    that.css("left", right+screenWidth/150);
-		    that.css("top", top+screenHeight/1000);
+		    $(".selected_element").each(function() {
+			$(this).css("left", "+="+String(right+screenWidth/150-l));
+			$(this).css("top", "+="+String(top+screenHeight/1000-t));
+		    });
 		    return false;
 		}
 		else if (r > left && r < right && verticalCenter < bottom && verticalCenter > top) {
-		    that.css("left", left-width-screenWidth/150);
-		    that.css("top", top+screenHeight/1000);
+		    $(".selected_element").each(function() {
+			$(this).css("left", "+="+String(left-width-screenWidth/150-l));
+			$(this).css("top", "+="+String(top+screenHeight/1000-t));
+		    });
 		    return false;
 		}
 		else if (t > top && t < bottom && horizontalCenter < right && horizontalCenter > left) {
-		    that.css("left", left);
-		    that.css("top", top+height+screenHeight/100);
+		    $(".selected_element").each(function() {
+			$(this).css("left", "+="+String(left-l));
+			$(this).css("top", "+="+String(top+height+screenHeight/100-t));
+		    });
 		    return false;
 		}
 		else if (b > top && b < bottom && horizontalCenter < right && horizontalCenter > left) {
-		    that.css("left", left);
-		    that.css("top", top-height-screenHeight/100);
+		    $(".selected_element").each(function() {
+			$(this).css("left", "+="+String(left-l));
+			$(this).css("top", "+="+String(top-height-screenHeight/100-t));
+		    });
 		    return false;
 		}
 	    }
@@ -223,16 +231,16 @@ $(document).ready(function() {
 	 if (Math.abs(evt.pageX-imgShow.x) < 1 && Math.abs(evt.pageY-imgShow.y) < 1) {
 	     $("#content").append("<a class='fancybox' id='fancylink' href='assets/"+imgShow.symbol+".jpg' title='"+imgShow.title+"'></a>");
       
-	 $("#fancylink").fancybox();
-      	  $("#fancylink").click();
+	     $("#fancylink").fancybox();
+      	     $("#fancylink").click();
       	  $("#fancylink").remove();
 	 }
 	 
 	 
 	 if (selectionArea.dragging) {
 	     $(".element").each(function() {
-		  eLeft = parseInt($(this).css("left").split("p")[0]); 
-		  eTop = parseInt($(this).css("top").split("p")[0]); 
+		  eLeft = parseInt($(this).css("left").split("p")[0])+parseInt($(this).css("width").split("p")[0])/2; 
+		  eTop = parseInt($(this).css("top").split("p")[0])+parseInt($(this).css("height").split("p")[0])/2; 
 				     
 		  if (eLeft > selectionArea.left && eLeft < selectionArea.left+selectionArea.width && eTop > selectionArea.top && eTop < selectionArea.top+selectionArea.height) {
 		      $(this).addClass("selected_element");
