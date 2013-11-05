@@ -1,7 +1,7 @@
 <div id="content">
 
 <% @elements.each_with_index do |e,i| %>
-   <div class='hidden element <%= e.kind %> <%= e.family %>' id='<%= e.symbol %>' style='top: <%= ((i/10)+1)*21 %>%; left:<%= ((i%10)+2)*6 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
+   <div class='hidden element <%= e.kind %> <%= e.family %> <%= e.block %>' id='<%= e.symbol %>' style='top: <%= ((i/10)+1)*21 %>%; left:<%= ((i%10)+2)*6 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
 
 
    	   
@@ -16,7 +16,7 @@
   <%= button_tag(:remover, id:"remove_element_button", class:"btn btn-primary btn-small") %>
 
 
-  <%= select_tag(:colour, options_for_select(["Normal","Metais/Não metais","Metais alcalinos","Metais alcalino-terrosos","Gases nobres","Halogéneos","Famílias"]), style:"width:190px") %>
+  <%= select_tag(:colour, options_for_select(["Normal","Metais/Não metais","Metais alcalinos","Metais alcalino-terrosos","Gases nobres","Halogéneos","Famílias","Bloco s", "Bloco p", "Bloco d", "Blocos"]), style:"width:190px") %>
   
   <label>Distribuição eletrónica</label>
   <%= select_tag(:distribution, options_for_select(["Nenhuma","Níveis","Blocos(concisa)"]), id:"distribution_selection", style:"width:140px") %>

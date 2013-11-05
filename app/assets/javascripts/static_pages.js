@@ -81,11 +81,18 @@ $(document).ready(function() {
 	 $(".metalColour").removeClass("metalColour");
 	 $(".nonMetalColour").removeClass("nonMetalColour");
 
-	 if (selection == "Normal" || selection == "Metais/Não metais") {
+	 if (selection != "Famílias" && selection != "Metais alcalinos" && selection != "Metais alcalino-terrosos" && selection != "Halogéneos" && selection != "Gases nobres") {
 	     $(".alcalineColour").removeClass("alcalineColour");
 	     $(".terrosoColour").removeClass("terrosoColour");
 	     $(".nobleGasColour").removeClass("nobleGasColour");
 	     $(".halogenColour").removeClass("halogenColour");
+	 }
+
+	if (selection != "Blocos" && selection != "Bloco s" && selection != "Bloco p" && selection != "Bloco d") {
+	     $(".sColour").removeClass("sColour");
+	     $(".pColour").removeClass("pColour");
+	     $(".dColour").removeClass("dColour");
+	     
 	 }
 
 	 if (selection == "Metais/Não metais") {
@@ -103,6 +110,15 @@ $(document).ready(function() {
 	 }
 	 if (selection == "Famílias" || selection == "Gases nobres") {
 	     $(".noble_gas").addClass("nobleGasColour");
+	 }
+	if (selection == "Blocos" || selection == "Bloco s") {
+	     $(".s").addClass("sColour");
+	 }
+	if (selection == "Blocos" || selection == "Bloco p") {
+	     $(".p").addClass("pColour");
+	 }
+	if (selection == "Blocos" || selection == "Bloco d") {
+	     $(".d").addClass("dColour");
 	 }
     });
 
