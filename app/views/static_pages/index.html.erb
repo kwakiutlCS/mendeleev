@@ -1,7 +1,7 @@
 <div id="content">
 
 <% @elements.each_with_index do |e,i| %>
-   <div class='hidden element <%= e.kind %> <%= e.family %> <%= e.block %>' id='<%= e.symbol %>' style='top: <%= ((i/10)+1)*21 %>%; left:<%= ((i%10)+2)*6 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
+   <div class='hidden element <%= e.kind %> <%= e.family %> <%= e.block %>' id='<%= e.symbol %>' style='top: <%= ((i/10)+1)*18.095 %>%; left:<%= ((i%10)+5)*4.593 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
 
 
    	   
@@ -10,18 +10,30 @@
 </div>
 
 <div id="sidebar">
+  <%= label_tag(:Elementos) %>
   <%= select_tag(:element, options_for_select(["H-Ca","Sc-Zn","Ga-Kr","K-Sr"]), id:"element_group", style:"width:80px") %>
-  <br />
+  <div class="btn-group">
   <%= button_tag(:adicionar, id:"add_element_button", class:"btn btn-primary btn-small") %>
   <%= button_tag(:remover, id:"remove_element_button", class:"btn btn-primary btn-small") %>
+  </div>
 
-
+  <%= label_tag(:coisa) %>
   <%= select_tag(:colour, options_for_select(["Normal","Metais/Não metais","Metais alcalinos","Metais alcalino-terrosos","Gases nobres","Halogéneos","Famílias","Bloco s", "Bloco p", "Bloco d", "Blocos"]), style:"width:190px") %>
   
   <label>Distribuição eletrónica</label>
   <%= select_tag(:distribution, options_for_select(["Nenhuma","Níveis","Blocos(concisa)"]), id:"distribution_selection", style:"width:140px") %>
   
-  
+  <%= label_tag(:Tabelas, "Formas da tabela",id:"tableLabel") %>
+   <div class="form-inline">
+  <%= select_tag(:table_selection, options_for_select([["",0],["Tabela periódica",1],["Tabela estendida",2],["Tabela Mendeleev",4],["Tabela Benfey",3],["Tabela Janet",5],["Tabela Stowe",6]]), style:"width:165px") %>
+<a id="table_link" href="#" class="btn btn-primary btn-small btn-custom disabled">ok</a>
+   </div>
+
+   <%= label_tag(:Reações) %>
+  <div class="form-inline">
+  <%= select_tag(:video_selection, options_for_select([["",0],["Reação Lítio+Água",1],["Reação Sódio+Água",2],["Reação Potássio+Água",3],["Reação Magnésio+Água",4],["Reação Cálcio+Água",5],["Reação Cloro+Cobre",6],["Reação Bromo+Alumínio",7]]), style:"width:165px") %>
+<a id="video" href="#" class="btn btn-primary btn-small btn-custom disabled">ok</a>
+   </div>
 </div>
 
 

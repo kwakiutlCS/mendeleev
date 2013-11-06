@@ -204,14 +204,14 @@ $(document).ready(function() {
 		if (l < right && l > left && verticalCenter < bottom && verticalCenter > top) {
 		    $(".selected_element").each(function() {
 			$(this).css("left", "+="+String(right+screenWidth/150-l));
-			$(this).css("top", "+="+String(top+screenHeight/1000-t));
+			$(this).css("top", "+="+String(top-t));
 		    });
 		    return false;
 		}
 		else if (r > left && r < right && verticalCenter < bottom && verticalCenter > top) {
 		    $(".selected_element").each(function() {
 			$(this).css("left", "+="+String(left-width-screenWidth/150-l));
-			$(this).css("top", "+="+String(top+screenHeight/1000-t));
+			$(this).css("top", "+="+String(top-t));
 		    });
 		    return false;
 		}
@@ -249,7 +249,7 @@ $(document).ready(function() {
       
 	     $("#fancylink").fancybox();
       	     $("#fancylink").click();
-      	  $("#fancylink").remove();
+      	     $("#fancylink").remove();
 	 }
 	 
 	 
@@ -324,10 +324,94 @@ $(document).ready(function() {
 
 
     
-    
+    var video_map = {0:"#",
+	       1:"http://www.youtube.com/watch?v=Vxqe_ZOwsHs",
+	       2:"http://www.youtube.com/watch?v=dmcfsEEogxs",
+	       3:"http://www.youtube.com/watch?v=oqMN3y8k9So",
+	       4:"http://www.youtube.com/watch?v=u_1uLP30uxY",
+	       5:"http://www.youtube.com/watch?v=i-rFsFwdkTU",
+               6:"http://www.youtube.com/watch?v=edLpxdERQZc",
+               7:"http://www.youtube.com/watch?v=zZAiYc3WVXM",
+              };
 
+    var table_map = {0:"#",
+		     1:"assets/periodic_table.png",
+		     2:"assets/extended.png",
+		     3:"assets/other.png",
+		     4: "assets/mendeleev.png",
+		     5: "assets/adomah.png",
+		     6: "assets/stowe.png"
+              };
    
-    
+    $("#video_selection").on("change",function() {
+	var v = $(this).val();
+	var link = $("a#video");
+	link.attr("href",video_map[v]);
+	
+	link.on('click', function(event) {
+		if ($(this).attr("href") != "#") {
+		                    
+		    event.preventDefault();
+		    $.fancybox({
+			'type' : 'iframe',
+		    // hide the related video suggestions and autoplay the video
+			'href' : this.href.replace(new RegExp('watch\\?v=', 'i'), 'embed/') + '?rel=0&autoplay=1',
+		    'overlayShow' : true,
+			'centerOnScroll' : true,
+			'speedIn' : 100,
+			'speedOut' : 50,
+			'width' : 640,
+			'height' : 480
+		    });
+		}
+	});
+
+
+	if (v === "0") {
+	    link.prop("disabled", true);
+	    link.addClass("disabled");
+	    
+	}
+	else {
+	    link.removeClass("disabled");
+	    link.prop("disabled", false);
+	    
+	}
+	    
+    });
     
   
+    $("#table_selection").on("change",function() {
+	var v = $(this).val();
+	var link = $("a#table_link");
+	link.attr("href",table_map[v]);
+	
+	link.on('click', function(event) {
+		if ($(this).attr("href") != "#") {
+		                    
+		    event.preventDefault();
+		    $.fancybox({
+			'transitionIn'	:	'elastic',
+			'transitionOut'	:	'elastic',
+			'href' : this.href,
+			'speedIn'		:	600, 
+			'speedOut'		:	200, 
+			'overlayShow'	:	true,
+		    });
+		}
+	});
+
+
+	if (v === "0") {
+	    link.prop("disabled", true);
+	    link.addClass("disabled");
+	    
+	}
+	else {
+	    link.removeClass("disabled");
+	    link.prop("disabled", false);
+	    
+	}
+	    
+    });
 });
