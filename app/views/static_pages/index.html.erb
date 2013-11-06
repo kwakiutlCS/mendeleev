@@ -25,13 +25,22 @@
   
   <%= label_tag(:Tabelas, "Formas da tabela",id:"tableLabel") %>
    <div class="form-inline">
-  <%= select_tag(:table_selection, options_for_select([["",0],["Tabela periódica",1],["Tabela estendida",2],["Tabela Mendeleev",4],["Tabela Benfey",3],["Tabela Janet",5],["Tabela Stowe",6]]), style:"width:165px") %>
+  <%= select_tag(:table_selection, options_for_select([["",0],["Tabela periódica",1],["Tabela estendida",2],["Tabela Mendeleev",4],["Tabela Benfey",3],["Tabela Janet",5],["Tabela Stowe",6]]), style:"width:150px") %>
 <a id="table_link" href="#" class="btn btn-primary btn-small btn-custom disabled">ok</a>
+
+
+
+<a href="assets/extended.png" id="extended_link" rel="tables" class="fancytables">extended</a>
+<a href="assets/mendeleev.png" id="mendeleev_link" rel="tables" class="fancytables">mendeleev</a>
+<a href="assets/other.png" id="benfey_link" rel="tables" class="fancytables">benfey</a>
+<a href="assets/adomah.png" id="adomah_link" rel="tables" class="fancytables">adomah</a>
+<a href="assets/stowe.png" id="stowe_link" rel="tables" class="fancytables">stowe</a>
+<a href="assets/periodic_table.png" id="periodic_link" rel="tables" class="fancytables">periodic table</a>
    </div>
 
    <%= label_tag(:Reações) %>
   <div class="form-inline">
-  <%= select_tag(:video_selection, options_for_select([["",0],["Reação Lítio+Água",1],["Reação Sódio+Água",2],["Reação Potássio+Água",3],["Reação Magnésio+Água",4],["Reação Cálcio+Água",5],["Reação Cloro+Cobre",6],["Reação Bromo+Alumínio",7]]), style:"width:165px") %>
+  <%= select_tag(:video_selection, options_for_select([["",0],["Reação Lítio+Água",1],["Reação Sódio+Água",2],["Reação Potássio+Água",3],["Reação Magnésio+Água",4],["Reação Cálcio+Água",5],["Reação Cloro+Cobre",6],["Reação Bromo+Alumínio",7]]), style:"width:150px") %>
 <a id="video" href="#" class="btn btn-primary btn-small btn-custom disabled">ok</a>
    </div>
 </div>

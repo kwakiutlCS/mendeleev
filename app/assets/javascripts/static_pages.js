@@ -323,7 +323,12 @@ $(document).ready(function() {
     });
 
 
-    
+    $(".fancytables").fancybox({openEffect	: 'elastic',
+				closeEffect	: 'elastic',
+			        cyclic: true,
+			       });
+
+                  
     var video_map = {0:"#",
 	       1:"http://www.youtube.com/watch?v=Vxqe_ZOwsHs",
 	       2:"http://www.youtube.com/watch?v=dmcfsEEogxs",
@@ -335,83 +340,74 @@ $(document).ready(function() {
               };
 
     var table_map = {0:"#",
-		     1:"assets/periodic_table.png",
-		     2:"assets/extended.png",
-		     3:"assets/other.png",
-		     4: "assets/mendeleev.png",
-		     5: "assets/adomah.png",
-		     6: "assets/stowe.png"
+		     1:"#periodic_link",
+		     2:"#extended_link",
+		     3:"#benfey_link",
+		     4: "#mendeleev_link",
+		     5: "#adomah_link",
+		     6: "#stowe_link"
               };
    
-    $("#video_selection").on("change",function() {
-	var v = $(this).val();
-	var link = $("a#video");
-	link.attr("href",video_map[v]);
+    var v_link = $("a#video");
 	
-	link.on('click', function(event) {
+	v_link.on('click', function(event) {
 		if ($(this).attr("href") != "#") {
 		                    
 		    event.preventDefault();
 		    $.fancybox({
 			'type' : 'iframe',
-		    // hide the related video suggestions and autoplay the video
 			'href' : this.href.replace(new RegExp('watch\\?v=', 'i'), 'embed/') + '?rel=0&autoplay=1',
-		    'overlayShow' : true,
+			'overlayShow' : true,
 			'centerOnScroll' : true,
 			'speedIn' : 100,
 			'speedOut' : 50,
-			'width' : 640,
-			'height' : 480
+			
 		    });
 		}
 	});
 
 
+    $("#video_selection").on("change",function() {
+	var v = $(this).val();
+	v_link.attr("href",video_map[v]);
+	
 	if (v === "0") {
-	    link.prop("disabled", true);
-	    link.addClass("disabled");
+	    v_link.prop("disabled", true);
+	    v_link.addClass("disabled");
 	    
 	}
 	else {
-	    link.removeClass("disabled");
-	    link.prop("disabled", false);
-	    
+	    v_link.removeClass("disabled");
+	    v_link.prop("disabled", false);
+	    v_link.click();
 	}
 	    
     });
     
-  
-    $("#table_selection").on("change",function() {
-	var v = $(this).val();
-	var link = $("a#table_link");
-	link.attr("href",table_map[v]);
+    var v;
+    var t_link = $("a#table_link");
 	
-	link.on('click', function(event) {
-		if ($(this).attr("href") != "#") {
-		                    
-		    event.preventDefault();
-		    $.fancybox({
-			'transitionIn'	:	'elastic',
-			'transitionOut'	:	'elastic',
-			'href' : this.href,
-			'speedIn'		:	600, 
-			'speedOut'		:	200, 
-			'overlayShow'	:	true,
-		    });
-		}
-	});
-
-
+    t_link.on("click", function() {
+	$(table_map[v]).click();
+	console.log(table_map[v]);
+    });
+    
+    $("#table_selection").on("change",function() {
+	v = $(this).val();
+	
 	if (v === "0") {
-	    link.prop("disabled", true);
-	    link.addClass("disabled");
+	    t_link.prop("disabled", true);
+	    t_link.addClass("disabled");
 	    
 	}
 	else {
-	    link.removeClass("disabled");
-	    link.prop("disabled", false);
-	    
+	    t_link.removeClass("disabled");
+	    t_link.prop("disabled", false);
+	    t_link.click();
 	}
 	    
     });
+
+
+    
 });
