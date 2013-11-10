@@ -17,11 +17,11 @@
   <%= button_tag(:remover, id:"remove_element_button", class:"btn btn-primary btn-small") %>
   </div>
 
-  <%= label_tag(:coisa) %>
-  <%= select_tag(:colour, options_for_select(["Normal","Metais/Não metais","Metais alcalinos","Metais alcalino-terrosos","Gases nobres","Halogéneos","Famílias","Bloco s", "Bloco p", "Bloco d", "Blocos"]), style:"width:190px") %>
+  <%= label_tag(:selecionar) %>
+  <%= select_tag(:colour, options_for_select(["","Metais/Não metais","Metais/Não metais (detalhe)","Metais alcalinos","Metais alcalino-terrosos","Gases nobres","Halogéneos","Famílias","Bloco s", "Bloco p", "Bloco d", "Blocos"]), style:"width:190px") %>
   
   <label>Distribuição eletrónica</label>
-  <%= select_tag(:distribution, options_for_select(["Nenhuma","Níveis","Blocos(concisa)"]), id:"distribution_selection", style:"width:140px") %>
+  <%= select_tag(:distribution, options_for_select(["","Níveis","Blocos(concisa)"]), id:"distribution_selection", style:"width:140px") %>
   
   <%= label_tag(:Tabelas, "Formas da tabela",id:"tableLabel") %>
    <div class="form-inline">
