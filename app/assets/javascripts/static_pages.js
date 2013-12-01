@@ -80,6 +80,8 @@ $(document).ready(function() {
 	 
 	 $(".metalColour").removeClass("metalColour");
 	 $(".nonMetalColour").removeClass("nonMetalColour");
+	 $(".metalloid").removeClass("metalloidColour");
+
 
 	 if (selection != "Famílias" && selection != "Metais alcalinos" && selection != "Metais alcalino-terrosos" && selection != "Halogéneos" && selection != "Gases nobres") {
 	     $(".alcalineColour").removeClass("alcalineColour");
@@ -98,7 +100,14 @@ $(document).ready(function() {
 	 if (selection == "Metais/Não metais") {
 	     $(".metal").addClass("metalColour");
 	     $(".non_metal").addClass("nonMetalColour");
+	     $(".metalloid").addClass("metalColour");
 	 }
+	 if (selection == "Metais/Não metais (detalhe)") {
+	     $(".metal").addClass("metalColour");
+	     $(".non_metal").addClass("nonMetalColour");
+	     $(".metalloid").addClass("metalloidColour");
+	 }
+	
 	 if (selection == "Famílias" || selection == "Metais alcalinos") {
 	     $(".alcaline").addClass("alcalineColour");
 	 }
