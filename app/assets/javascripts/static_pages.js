@@ -268,7 +268,9 @@ $(document).ready(function() {
 		  eTop = parseInt($(this).css("top").split("p")[0])+parseInt($(this).css("height").split("p")[0])/2; 
 				     
 		  if (eLeft > selectionArea.left && eLeft < selectionArea.left+selectionArea.width && eTop > selectionArea.top && eTop < selectionArea.top+selectionArea.height) {
-		      $(this).addClass("selected_element");
+		      if (!$(this).hasClass("hidden")) {
+			  $(this).addClass("selected_element");
+		      }
 		  }
 	     });
 	 }

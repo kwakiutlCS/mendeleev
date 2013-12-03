@@ -1,8 +1,13 @@
 <div id="content">
 
 <% @elements.each_with_index do |e,i| %>
-   <div class='hidden element <%= e.kind %> <%= e.family %> <%= e.block %>' id='<%= e.symbol %>' style='top: <%= ((i/10)+1)*18.095 %>%; left:<%= ((i%10)+5)*4.593 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
-
+   <% if i < 20 %>
+      <div class='hidden element <%= e.kind %> <%= e.family %> <%= e.block %>' id='<%= e.symbol %>' style='top: <%= ((i/10)+1)*18.095 %>%; left:<%= ((i%10)+5)*4.593 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
+      <% elsif i < 30 %>
+	  <div class='hidden element <%= e.kind %> <%= e.family %> <%= e.block %>' id='<%= e.symbol %>' style='top: 80%; left:<%= ((i%10))*4.593+0.5 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
+	 <% else %>
+	 <div class='hidden element <%= e.kind %> <%= e.family %> <%= e.block %>' id='<%= e.symbol %>' style='top: 80%; left:<%= ((i%10))*4.593+10.5*4.593 %>%' data-symbol='<%= e.symbol%>' data-title='<%= e.name %>' data-Z='<%= e.Z %>'><div class='symbol'><%= e.symbol%></div><div class='name'><%= e.name %></div><div class='Z'><%= e.Z %></div><div class='distribution'><%= e.distribution %></div><div class='detailed_distribution'><%= raw(e.detailed_distribution) %></div></div>
+	 <% end %>
 
    	   
 <% end %>
@@ -11,7 +16,7 @@
 
 <div id="sidebar">
   <%= label_tag(:Elementos) %>
-  <%= select_tag(:element, options_for_select(["H-Ca","Sc-Zn","Ga-Kr","K-Sr"]), id:"element_group", style:"width:80px") %>
+  <%= select_tag(:element, options_for_select(["H-Ca","Sc-Zn","Ga-Kr"]), id:"element_group", style:"width:80px") %>
   <div class="btn-group">
   <%= button_tag(:adicionar, id:"add_element_button", class:"btn btn-primary btn-small") %>
   <%= button_tag(:remover, id:"remove_element_button", class:"btn btn-primary btn-small") %>
@@ -25,7 +30,7 @@
   
   <%= label_tag(:Tabelas, "Formas da tabela",id:"tableLabel") %>
    <div class="form-inline">
-  <%= select_tag(:table_selection, options_for_select([["",0],["Tabela periódica",1],["Tabela estendida",2],["Tabela Mendeleev",4],["Tabela Benfey",3],["Tabela Janet",5],["Tabela Stowe",6]]), style:"width:150px") %>
+  <%= select_tag(:table_selection, options_for_select([["",0],["Tabela standard",1],["Tabela estendida",2],["Tabela Mendeleev",4],["Tabela Benfey",3],["Tabela Janet",5],["Tabela Stowe",6]]), style:"width:150px") %>
 <a id="table_link" href="#" class="btn btn-primary btn-small btn-custom disabled">ok</a>
 
 
