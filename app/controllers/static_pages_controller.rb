@@ -1,14 +1,13 @@
 class StaticPagesController < ApplicationController
 
 def index
-  @elements = Element.order("Z")
-  
+  @elements = Element.order("z")
 end
 
 
 def get_element
   if params[:symbol] == "H-Ca"
-    @elements = Element.where("Z <= 20").order("Z")
+    @elements = Element.where("z <= 20").order("z")
   end
 
   respond_to do |format|
